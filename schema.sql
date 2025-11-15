@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS author_profile(
 
 CREATE TABLE IF NOT EXISTS novel(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    auhtor_profile_id INTEGER NOT NULL,
+    author_profile_id INTEGER NOT NULL,
     title TEXT NOT NULL,
     slug TEXT NOT NULL UNIQUE,
     synopsis TEXT,
@@ -35,10 +35,10 @@ CREATE TABLE IF NOT EXISTS novel(
     updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     published_at TEXT,
 
-    FOREIGN KEY (auhtor_profile_id) REFERENCES author_profile(id) ON DELETE CASCADE
+    FOREIGN KEY (author_profile_id) REFERENCES author_profile(id) ON DELETE CASCADE
 );
 
-CREATE INDEX IF NOT EXISTS idx_novel_author ON novel(auhtor_profile_id);
+CREATE INDEX IF NOT EXISTS idx_novel_author ON novel(author_profile_id);
 CREATE INDEX IF NOT EXISTS idx_novel_populariry ON novel(popularity_score DESC);
 
 CREATE TABLE IF NOT EXISTS genre(
