@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS user(
     email TEXT NOT NULL UNIQUE,
     password_hash TEXT NOT NULL,
     name TEXT NOT NULL UNIQUE,
-    role TEXT NOT NULL CHECK(role IN ('reader', 'author', 'admin'))
+    role TEXT NOT NULL CHECK(role IN ('reader', 'author', 'admin')),
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS novel(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     auhtor_profile_id INTEGER NOT NULL,
     title TEXT NOT NULL,
-    slug TEXT NOT NULL UNIQUE
+    slug TEXT NOT NULL UNIQUE,
     synopsis TEXT,
     cover_url TEXT,
     popularity_score REAL NOT NULL DEFAULT 0,
