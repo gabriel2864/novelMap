@@ -17,8 +17,8 @@ CREATE TABLE IF NOT EXISTS author_profile(
     approx_latitude REAL,
     approx_longitude REAL,
     country_code TEXT,
-    created_at NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 );
@@ -31,8 +31,8 @@ CREATE TABLE IF NOT EXISTS novel(
     synopsis TEXT,
     cover_url TEXT,
     popularity_score REAL NOT NULL DEFAULT 0,
-    created_at NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     published_at TEXT,
 
     FOREIGN KEY (auhtor_profile_id) REFERENCES author_profile(id) ON DELETE CASCADE
@@ -62,8 +62,8 @@ CREATE TABLE IF NOT EXISTS chapter(
     chapter_number INTEGER NOT NULL,
     title TEXT NOT NULL,
     content TEXT NOT NULL, -- HTML OR MD
-    created_at NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     published_at TEXT,
 
     FOREIGN KEY (novel_id) REFERENCES novel(id) ON DELETE CASCADE,
