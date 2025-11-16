@@ -170,5 +170,84 @@ def create_app(config: dict[str, Any] | None = None) -> Flask:
             novel=dict(novel_row),
             chapters=[dict(c) for c in chapters],
         )
+    
+    @app.get("/read/<slug>/<int:chapter_number>")
+    def read_chapter(slug: str, chapter_number: int) -> str:
+        """
+        Reader page for a specific chapter of a novel.
+        Shows chapter content and next/previous navigation.
+        """
+        db = get_db()
+
+        # Load the novel (by slug)
+        novel_row = db.execute(
+            """
+            SELECT
+                n.id,
+                n.title,
+                n.slug,
+                u.name AS author_name
+            FROM novel n
+            JOIN author_profile ap ON ap.id = n.author_profile_id
+            JOIN user u ON u.id = ap.user_id
+            WHERE n.slug = ?
+            """,
+            (slug,),
+        ).fetchone()
+
+        if novel_row is None:
+            abort(404)
+
+        novel_id = novel_row["id"]
+
+        # Load this specific chapter
+        chapter_row = db.execute(
+            """
+            SELECT
+                chapter_number,
+                title,
+                content
+            FROM chapter
+            WHERE novel_id = ? AND chapter_number = ?
+            """,
+            (novel_id, chapter_number),
+        ).fetchone()
+
+        if chapter_row is None:
+            abort(404)
+
+        # Previous chapter (if any)
+        prev_row = db.execute(
+            """
+            SELECT chapter_number
+            FROM chapter
+            WHERE novel_id = ? AND chapter_number < ?
+            ORDER BY chapter_number DESC
+            LIMIT 1
+            """,
+            (novel_id, chapter_number),
+        ).fetchone()
+        prev_chapter = prev_row["chapter_number"] if prev_row else None
+
+        # Next chapter (if any)
+        next_row = db.execute(
+            """
+            SELECT chapter_number
+            FROM chapter
+            WHERE novel_id = ? AND chapter_number > ?
+            ORDER BY chapter_number ASC
+            LIMIT 1
+            """,
+            (novel_id, chapter_number),
+        ).fetchone()
+        next_chapter = next_row["chapter_number"] if next_row else None
+
+        return render_template(
+            "reader.html",
+            novel=dict(novel_row),
+            chapter=dict(chapter_row),
+            prev_chapter=prev_chapter,
+            next_chapter=next_chapter,
+        )
 
     return app

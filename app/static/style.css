@@ -243,3 +243,86 @@ body {
   height: 260px;
 }
 
+/*
+   Reader page
+*/
+
+.nz-reader-section {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.nz-reader-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.nz-reader-header h1 {
+  margin: 0 0 4px;
+}
+
+.nz-reader-header h2 {
+  margin: 8px 0 0;
+  font-size: 1.1rem;
+}
+
+.nz-reader-nav-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+/* Reusable pill-style nav buttons */
+
+.nz-nav-pill {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--nz-accent-2);
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: var(--nz-text-dark);
+  background: #f5f1e9;
+}
+
+.nz-nav-pill:hover {
+  border-color: var(--nz-accent-1);
+  color: var(--nz-text-dark);
+}
+
+.nz-nav-pill-primary {
+  background: var(--nz-accent-1);
+  border-color: var(--nz-accent-1);
+  color: var(--nz-text-light);
+}
+
+.nz-nav-pill-primary:hover {
+  background: var(--nz-accent-2);
+  border-color: var(--nz-accent-2);
+  color: var(--nz-text-dark);
+}
+
+/* Reader content area */
+
+.nz-reader-content {
+  padding: 16px 18px;
+  margin: 12px 0 20px;
+  background: #f7f3ec;
+  border-radius: 8px;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.nz-reader-footer-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nz-end-of-book {
+  font-size: 0.9rem;
+  color: #6b6b6b;
+}
