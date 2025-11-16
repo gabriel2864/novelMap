@@ -1,26 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>{{ novel.title }}</h1>
-  <p><em>by {{ novel.author_name }}</em></p>
+  <section class="nz-section">
+    <div class="nz-novel-layout">
+      <div class="nz-novel-cover-column">
+        <div class="nz-book-cover nz-book-cover-large">
+          <span>{{ novel.title }}</span>
+        </div>
+      </div>
 
-  {% if novel.synopsis %}
-    <h2>Synopsis</h2>
-    <p>{{ novel.synopsis }}</p>
-  {% endif %}
+      <div class="nz-novel-main-column">
+        <h1>{{ novel.title }}</h1>
+        <p><em>by {{ novel.author_name }}</em></p>
 
-  <h2>Chapters</h2>
-  {% if chapters %}
-    <ol>
-      {% for chapter in chapters %}
-        <li>
-          Chapter {{ chapter.chapter_number }}: {{ chapter.title }}
-          <!-- later: link to /read/{{ novel.slug }}/{{ chapter.chapter_number }} -->
-        </li>
-      {% endfor %}
-    </ol>
-  {% else %}
-    <p>No chapters found.</p>
-  {% endif %}
+        {% if novel.synopsis %}
+          <h2>Synopsis</h2>
+          <p>{{ novel.synopsis }}</p>
+        {% endif %}
 
-  <p><a href="/novels">← Back to all novels</a></p>
+        <h2>Chapters</h2>
+        {% if chapters %}
+          <ol>
+            {% for chapter in chapters %}
+              <li>
+                Chapter {{ chapter.chapter_number }}: {{ chapter.title }}
+                <!-- later link: /read/{{ novel.slug }}/{{ chapter.chapter_number }} -->
+              </li>
+            {% endfor %}
+          </ol>
+        {% else %}
+          <p>No chapters found.</p>
+        {% endif %}
+
+        <p><a href="{{ url_for('browse') }}">← Back to Browse</a></p>
+      </div>
+    </div>
+  </section>
 {% endblock %}
+

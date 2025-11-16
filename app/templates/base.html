@@ -12,7 +12,7 @@
       <a href="{{ url_for('home') }}" class="nz-logo-btn">NovelZone</a>
 
       <a href="{{ url_for('home') }}" class="nz-nav-btn">Home</a>
-      <a href="/browse" class="nz-nav-btn">Browse</a>
+      <a href="{{ url_for('browse') }}" class="nz-nav-btn">Browse</a>
       <form action="/search" method="get" class="nz-search">
         <input
           type="text"

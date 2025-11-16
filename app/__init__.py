@@ -25,7 +25,7 @@ from __future__ import annotations
 from typing import Any
 from pathlib import Path
 
-from flask import Flask, render_template, abort
+from flask import Flask, render_template, abort, redirect, url_for
 
 from app.db import get_db, close_db
 
@@ -102,8 +102,8 @@ def create_app(config: dict[str, Any] | None = None) -> Flask:
         )
 
 
-    @app.get("/novels")
-    def novels_list() -> str:
+    @app.get("/browse")
+    def browse() -> str:
         """List novels from the database, ordered by popularity."""
         db = get_db()
         rows = db.execute(
@@ -124,6 +124,11 @@ def create_app(config: dict[str, Any] | None = None) -> Flask:
 
         novels = [dict(row) for row in rows]
         return render_template("novels_list.html", novels=novels)
+
+
+    @app.get("/novels")
+    def novels_redirect():
+        return redirect(url_for("browse"))
 
 
     @app.get("/novels/<slug>")

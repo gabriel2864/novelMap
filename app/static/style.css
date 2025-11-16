@@ -225,3 +225,21 @@ body {
 .nz-footer a:hover {
   color: var(--nz-accent-1);
 }
+
+/* Novel detail layout */
+
+.nz-novel-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.nz-novel-cover-column {
+  align-self: flex-start;
+}
+
+.nz-book-cover-large {
+  height: 260px;
+}
+

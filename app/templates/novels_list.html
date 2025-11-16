@@ -1,23 +1,34 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Novels</h1>
-  {% if novels %}
-    <ul>
-      {% for novel in novels %}
-        <li>
-          <strong>
-            <a href="/novels/{{ novel.slug }}">{{ novel.title }}</a>
-          </strong>
-          by {{ novel.author_name }}
-          <br />
-          <small>Popularity: {{ novel.popularity_score }}</small>
-          {% if novel.synopsis %}
-            <p>{{ novel.synopsis }}</p>
-          {% endif %}
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>No novels found (did you run seed_db.py?).</p>
-  {% endif %}
+  <section class="nz-section">
+    <div class="nz-section-header">
+      <h2>Browse novels</h2>
+      <!-- later: filters will go here (genre, sort, etc.) -->
+    </div>
+
+    {% if novels %}
+      <div class="nz-card-row">
+        {% for novel in novels %}
+          <article class="nz-book-card">
+            <a href="/novels/{{ novel.slug }}" class="nz-book-link">
+              <div class="nz-book-cover">
+                <span>{{ novel.title }}</span>
+              </div>
+              <div class="nz-book-meta">
+                <div class="nz-book-title">{{ novel.title }}</div>
+                <div class="nz-book-author">by {{ novel.author_name }}</div>
+                {% if novel.synopsis %}
+                  <div class="nz-book-progress">
+                    {{ novel.synopsis[:80] }}{% if novel.synopsis|length > 80 %}…{% endif %}
+                  </div>
+                {% endif %}
+              </div>
+            </a>
+          </article>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>No novels found.</p>
+    {% endif %}
+  </section>
 {% endblock %}
