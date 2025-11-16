@@ -70,4 +70,16 @@ CREATE TABLE IF NOT EXISTS chapter(
     UNIQUE (novel_id, chapter_number)
 );
 
+CREATE TABLE IF NOT EXISTS reading_progress (
+    id                  INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id             INTEGER NOT NULL,
+    novel_id            INTEGER NOT NULL,
+    last_chapter_number INTEGER NOT NULL DEFAULT 1,
+    updated_at          TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
+    FOREIGN KEY (novel_id) REFERENCES novel(id) ON DELETE CASCADE,
+    UNIQUE (user_id, novel_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_progress_user ON reading_progress(user_id, updated_at DESC);
 CREATE INDEX IF NOT EXISTS idx_chapter_novel_number ON chapter(novel_id, chapter_number);

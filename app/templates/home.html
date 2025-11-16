@@ -1,6 +1,61 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Hello, World</h1>
-  <p>This is my Flask mockup for NovelMap. Next: /novels, /map, /read</p>
-  <p>Healthcheck: <a href="/health">/health</a></p>
+  <section class="nz-section">
+    <div class="nz-section-header">
+      <h2>Popular novels</h2>
+      <a href="/browse" class="nz-see-more">See more →</a>
+    </div>
+
+    <div class="nz-card-row">
+      {% for novel in popular_novels %}
+        <article class="nz-book-card">
+          <a href="/novels/{{ novel.slug }}" class="nz-book-link">
+            <div class="nz-book-cover">
+              <span>{{ novel.title }}</span>
+            </div>
+            <div class="nz-book-meta">
+              <div class="nz-book-title">{{ novel.title }}</div>
+              <div class="nz-book-author">by {{ novel.author_name }}</div>
+            </div>
+          </a>
+        </article>
+      {% else %}
+        <p>No popular novels yet. Seed the database to see examples.</p>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="nz-section">
+    <div class="nz-section-header">
+      <h2>Continue reading</h2>
+      <a href="/collection" class="nz-see-more">See more →</a>
+    </div>
+
+    <div class="nz-card-row">
+      {% for item in continue_reading %}
+        <article class="nz-book-card">
+          <a
+            href="/read/{{ item.slug }}/{{ item.last_chapter_number }}"
+            class="nz-book-link"
+          >
+            <div class="nz-book-cover">
+              <span>{{ item.title }}</span>
+            </div>
+            <div class="nz-book-meta">
+              <div class="nz-book-title">{{ item.title }}</div>
+              <div class="nz-book-author">
+                by {{ item.author_name }}
+              </div>
+              <div class="nz-book-progress">
+                Continue from chapter {{ item.last_chapter_number }}
+              </div>
+            </div>
+          </a>
+        </article>
+      {% else %}
+        <p>No reading progress yet.</p>
+      {% endfor %}
+    </div>
+  </section>
 {% endblock %}
+

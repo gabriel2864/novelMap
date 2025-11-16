@@ -1,0 +1,227 @@
+/*
+   NovelZone — Color System
+*/
+
+:root {
+  --nz-bg: #FDFBF7;         /* main page background */
+  --nz-bg-secondary: #E8E5E0; /* cards, sections */
+
+  --nz-text-dark: #2E2E2E;
+  --nz-text-light: #FDFBF7;
+
+  --nz-nav-bg: #3B4A58;     /* header, nav, footer */
+  --nz-accent-1: #C97C5D;   /* strong accent */
+  --nz-accent-2: #A5B59F;   /* soft subtle accent */
+
+  --nz-card-bg: #E8E5E0;
+}
+
+/*
+   Global reset & typography
+*/
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--nz-bg);
+  color: var(--nz-text-dark);
+}
+
+/*
+   Header & Navigation
+*/
+
+.nz-header {
+  background: var(--nz-nav-bg);
+  padding: 10px 24px;
+  color: var(--nz-text-light);
+}
+
+.nz-nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nz-logo-btn {
+  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: 4px;
+  background: transparent;
+  border: 2px solid var(--nz-text-light);
+  text-decoration: none;
+  color: var(--nz-text-light);
+  margin-right: 28px;
+}
+
+.nz-logo-btn:hover {
+  background: var(--nz-text-light);
+  color: var(--nz-nav-bg);
+}
+
+/* Navigation buttons */
+
+.nz-nav-btn {
+  padding: 8px 14px;
+  border-radius: 4px;
+  background: var(--nz-nav-bg);
+  border: 1px solid var(--nz-text-light);
+  color: var(--nz-text-light);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.nz-nav-btn:hover {
+  background: var(--nz-accent-1);
+  border-color: var(--nz-accent-1);
+}
+
+/* Search bar */
+
+.nz-search {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 12px;
+}
+
+.nz-search-input {
+  padding: 6px 8px;
+  border-radius: 4px 0 0 4px;
+  border: 1px solid var(--nz-bg-secondary);
+  background: var(--nz-bg-secondary);
+  color: var(--nz-text-dark);
+}
+
+.nz-search-btn {
+  padding: 6px 12px;
+  border-radius: 0 4px 4px 0;
+  border: 1px solid var(--nz-bg-secondary);
+  background: var(--nz-accent-2);
+  color: var(--nz-text-dark);
+  cursor: pointer;
+}
+
+.nz-search-btn:hover {
+  background: var(--nz-accent-1);
+  color: var(--nz-text-light);
+}
+
+/*
+   Main layout
+*/
+
+.nz-main {
+  padding: 24px;
+}
+
+/* Section container */
+
+.nz-section {
+  background: var(--nz-bg-secondary);
+  border-radius: 8px;
+  padding: 16px 20px 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.nz-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 16px;
+}
+
+/* "See more" link */
+
+.nz-see-more {
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: var(--nz-accent-1);
+}
+
+.nz-see-more:hover {
+  color: var(--nz-accent-2);
+}
+
+/* Cards */
+
+.nz-card-row {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+}
+
+.nz-book-card {
+  flex: 0 0 160px;
+}
+
+.nz-book-link {
+  text-decoration: none;
+  color: var(--nz-text-dark);
+}
+
+/* Book cover placeholder */
+
+.nz-book-cover {
+  height: 200px;
+  background: var(--nz-card-bg);
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 8px;
+  margin-bottom: 8px;
+  border: 2px solid #d4d1cb; /* subtle border */
+}
+
+.nz-book-cover:hover {
+  border-color: var(--nz-accent-1);
+}
+
+/* Card text */
+
+.nz-book-title {
+  font-weight: 700;
+}
+
+.nz-book-author {
+  color: #6b6b6b;
+  font-size: 0.8rem;
+}
+
+.nz-book-progress {
+  color: #4b4b4b;
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+/*
+   Footer
+*/
+
+.nz-footer {
+  background: var(--nz-nav-bg);
+  padding: 14px 24px;
+  margin-top: 40px;
+  color: var(--nz-text-light);
+}
+
+.nz-footer-content {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  font-size: 0.9rem;
+}
+
+.nz-footer a {
+  color: var(--nz-accent-2);
+}
+
+.nz-footer a:hover {
+  color: var(--nz-accent-1);
+}

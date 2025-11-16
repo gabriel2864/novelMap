@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>{{ novel.title }}</h1>
+  <p><em>by {{ novel.author_name }}</em></p>
+
+  {% if novel.synopsis %}
+    <h2>Synopsis</h2>
+    <p>{{ novel.synopsis }}</p>
+  {% endif %}
+
+  <h2>Chapters</h2>
+  {% if chapters %}
+    <ol>
+      {% for chapter in chapters %}
+        <li>
+          Chapter {{ chapter.chapter_number }}: {{ chapter.title }}
+          <!-- later: link to /read/{{ novel.slug }}/{{ chapter.chapter_number }} -->
+        </li>
+      {% endfor %}
+    </ol>
+  {% else %}
+    <p>No chapters found.</p>
+  {% endif %}
+
+  <p><a href="/novels">← Back to all novels</a></p>
+{% endblock %}

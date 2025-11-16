@@ -2,18 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>NovelZone (Mockup)</title>
+  <title>NovelZone</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 0; }
-    header, footer { padding: 12px 16px; background: #0f172a; color: white; }
-    main { padding: 16px; }
-    a { color: #2563eb; text-decoration: none; }
-  </style>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 <body>
-  <header><strong>NovelZone</strong> · mockup</header>
-  <main>{% block content %}{% endblock %}</main>
-  <footer><small>&copy; 2025 NovelZone</small></footer>
+  <header class="nz-header">
+    <nav class="nz-nav">
+      <a href="{{ url_for('home') }}" class="nz-logo-btn">NovelZone</a>
+
+      <a href="{{ url_for('home') }}" class="nz-nav-btn">Home</a>
+      <a href="/browse" class="nz-nav-btn">Browse</a>
+      <form action="/search" method="get" class="nz-search">
+        <input
+          type="text"
+          name="q"
+          placeholder="Search novels..."
+          class="nz-search-input"
+        />
+        <button type="submit" class="nz-search-btn">Search</button>
+      </form>
+      <a href="/collection" class="nz-nav-btn">My library</a>
+      <a href="/profile" class="nz-nav-btn">Profile &amp; Settings</a>
+    </nav>
+  </header>
+
+  <main class="nz-main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="nz-footer">
+    <div class="nz-footer-content">
+      <span>Contact: <a href="mailto:gm@beauvoir.com">you@example.com</a></span>
+      <span>Resources</span>
+      <a href="https://tally.so" target="_blank" rel="noreferrer">
+        Feedback form (Tally)
+      </a>
+    </div>
+  </footer>
 </body>
 </html>

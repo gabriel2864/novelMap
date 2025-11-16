@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Novels</h1>
+  {% if novels %}
+    <ul>
+      {% for novel in novels %}
+        <li>
+          <strong>
+            <a href="/novels/{{ novel.slug }}">{{ novel.title }}</a>
+          </strong>
+          by {{ novel.author_name }}
+          <br />
+          <small>Popularity: {{ novel.popularity_score }}</small>
+          {% if novel.synopsis %}
+            <p>{{ novel.synopsis }}</p>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No novels found (did you run seed_db.py?).</p>
+  {% endif %}
+{% endblock %}

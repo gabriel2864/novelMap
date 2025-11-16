@@ -116,16 +116,31 @@ def seed_db(db_path: str = "novelzone.db") -> None:
                 (
                     novel_id,
                     1,
-                    "Chapter 1: The Awakening",
+                    "The Awakening",
                     "Once upon a time, the story map awakened...",
                 ),
                 (
                     novel_id,
                     2,
-                    "Chapter 2: The First Zone",
+                    "The First Zone",
                     "The first zone of the map revealed a hidden city...",
                 ),
             ],
+        )
+
+        cur.execute(
+            "SELECT id FROM user WHERE email = ?", ("reader@example.com",)
+        )
+        reader_user_id = cur.fetchone()["id"]
+
+        cur.execute(
+            """
+            INSERT INTO reading_progress (
+                user_id, novel_id, last_chapter_number
+            )
+            VALUES (?, ?, ?)
+            """,
+            (reader_user_id, novel_id, 2),  # reader is at chapter 2
         )
 
         conn.commit()
